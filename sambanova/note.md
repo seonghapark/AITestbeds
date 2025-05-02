@@ -1,5 +1,7 @@
 # What did I do to run LM at Sambanova
 
+## I found this after installing Anaconda:
+(Conda is not supported on the SambaNova system.)[https://docs.alcf.anl.gov/ai-testbed/sambanova/virtual-environment/]
 ## Install Anaconda
 Because I heard that ALCF does not allow to use docker container (maybe not), I installed conda:
 ```
