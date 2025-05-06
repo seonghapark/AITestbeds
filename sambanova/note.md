@@ -1,7 +1,7 @@
 # What did I do to run LM at Sambanova
 
 ## I found this after installing Anaconda:
-(Conda is not supported on the SambaNova system.)[https://docs.alcf.anl.gov/ai-testbed/sambanova/virtual-environment/]
+[Conda is not supported on the SambaNova system.](https://docs.alcf.anl.gov/ai-testbed/sambanova/virtual-environment/)
 ## Install Anaconda
 Because I heard that ALCF does not allow to use docker container (maybe not), I installed conda:
 ```
@@ -84,7 +84,7 @@ SAMBASTUDIO_API_KEY="89abcdef-0123-4567-89ab-cdef01234567"
 but receieved the same error mesasage.
 
 
-## Follow SambaNova documentation (to run language example applications)[https://docs.sambanova.ai/developer/latest/run-examples-language.html]
+## Follow SambaNova documentation [to run language example applications](https://docs.sambanova.ai/developer/latest/run-examples-language.html)
 In this documentation, the first thing that they say is
 ```
 To prepare your environment, you:
