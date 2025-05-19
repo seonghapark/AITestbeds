@@ -112,6 +112,17 @@ I started from generating a new conda environment, `conda create -n test_env1`, 
 The ALCF's Sambanova supports python3.13.8, which is not compatible with any version of sentencepiece (python version is too high).
 Can use models using `Transformers`, but that is not stand-alone-way, but access to HuggingFace Cloud to process.
 
+Then I downloaded BERT model, and received four files
+```
+config.json
+model.safetensors
+special_tokens.json
+tokenizer.json
+tokenizer_config.json
+vocab.txt
+```
+
+`safetensors` is a new type of data format the HuggingFace generated for safe and efficient storing of model weight. They are saying that `It prioritizes security by preventing code execution, while also being fast and simple to implement, making it suitable for cross-language and cross-framework compatibility.` For now (May 19, 2025), I am not sure how I can load the weight directly, since I guess they are different from `Pickle`.
 
 ## Note:
 - Usually, I cannot use ALCF machine on Mondays (sometimes Tuesdays too), because of regular maintenance of the system.
