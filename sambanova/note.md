@@ -83,6 +83,16 @@ SAMBASTUDIO_API_KEY="89abcdef-0123-4567-89ab-cdef01234567"
 ```
 but receieved the same error mesasage.
 
+### Answer from ALCF:
+```
+Hi, You are trying to run this code on SN30 which does not support it.
+The github instructions were for a SN40L cloud instance.
+We recently deployed the SN40L system on prem in the AI Testbed that will be made available to users soon.
+I would suggest you wait for a few weeks and once you have access to this machine, give it a try then.
+```
+
+So move to other way to run models.
++) And based on the information on answer from ALCF, Farah performed her test on Sambanova Cloud.
 
 ## Follow SambaNova documentation [to run language example applications](https://docs.sambanova.ai/developer/latest/run-examples-language.html)
 In this documentation, the first thing that they say is
@@ -92,11 +102,19 @@ To prepare your environment, you:
 - make a copy of the tutorial files
 - download the data files from the internet
 ```
-And it seems when I clone the ai-starter-kit.git from sambanova and install their requirements, SambaFlow was installed.
 
+This `sambaflow` is not install in the Sambanova, and users do not allow to install things, therefore, move to other way to run models.
+
+## Trying things from scratch
+I started from generating a new conda environment, `conda create -n test_env1`, and installed required libraries that Sambanova stated in their (repo)[https://github.com/sambanova/ai-starter-kit/blob/main/benchmarking/requirements.txt]. But because I am not sure if the global environment of the Sambanova machine of ALCF is the same as that of when the Sambanova poeple uploaded the information, I removed versions of the libs.
+
+### From the installation of the libs:
+The ALCF's Sambanova supports python3.13.8, which is not compatible with any version of sentencepiece (python version is too high).
+Can use models using `Transformers`, but that is not stand-alone-way, but access to HuggingFace Cloud to process.
 
 
 ## Note:
+- Usually, I cannot use ALCF machine on Mondays (sometimes Tuesdays too), because of regular maintenance of the system.
 - (From Google AI Overview) Sambanova uses a custom AI chip called the **SN40L Reconfigurable Dataflow Unit (RDU)**, not a traditional GPU.
 - Sambanova requies SambaFlow to run ML models: SambaFlow automatically extracts, optimizes, and executes the optimal dataflow graph of any of your models on Sambanova's RDUs. This enables you to achieve out-of-box performance, accuracy, scale, and easy of use.
 
