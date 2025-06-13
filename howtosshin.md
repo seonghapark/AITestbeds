@@ -1,4 +1,4 @@
-# How to ssh into Graphcore and other AI Testbed Machines:
+# How to ssh into AI Testbed Machines:
 https://docs.alcf.anl.gov/ai-testbed/graphcore/getting-started/
 
 ## Log in to Graphcore:
