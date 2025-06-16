@@ -30,6 +30,7 @@ The last line uninstalled and installed things:
       Successfully uninstalled cerebras-modelzoo-2.5.0
   Running setup.py develop for cerebras_modelzoo
 Successfully installed cerebras-appliance-2.5.0 cerebras_modelzoo cerebras_pytorch-2.5.0
+  DEPRECATION: Legacy editable install of cerebras_modelzoo from git+https://github.com/Cerebras/modelzoo#egg=cerebras_modelzoo (setup.py develop) is deprecated. pip 25.1 will enforce this behaviour change. A possible replacement is to add a pyproject.toml or enable --use-pep517, and use setuptools >= 64. If the resulting installation is not behaving as expected, try using --config-settings editable_mode=compat. Please consult the setuptools documentation for more information. Discussion can be found at https://github.com/pypa/pip/issues/11457
 ```
 
 Tried to install lower version of **`cerebras_modelzoo`**, but the system said **there is no other version**.
@@ -229,3 +230,23 @@ pydantic_core._pydantic_core.ValidationError: 8 validation errors for function-b
     For further information visit https://errors.pydantic.dev/2.8/v/list_type
 ```
 
+**Anyway**
+When YH helped me and followed the examples, he also faced the final error message that I saw before that made me to try Release-2.4.0:
+```
+(venv_cerebras_pt) (base) [seonghapark@cer-login-01 gpt3]$ python run.py CSX --job_labels name=gpt3_111m --params configs/Cerebras_GPT/111m_modified.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src --compile_dir $(whoami) |& tee mytest.log
+Traceback (most recent call last):
+  File "run.py", line 25, in <module>
+    run()
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/src/cerebras-modelzoo/src/cerebras/modelzoo/common/run_utils.py", line 65, in run
+    main(
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/src/cerebras-modelzoo/src/cerebras/modelzoo/common/run_utils.py", line 104, in main
+    from cerebras.modelzoo.trainer.restartable_trainer import RestartableTrainer
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/src/cerebras-modelzoo/src/cerebras/modelzoo/trainer/__init__.py", line 20, in <module>
+    from . import callbacks, loggers, utils
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/src/cerebras-modelzoo/src/cerebras/modelzoo/trainer/callbacks/__init__.py", line 34, in <module>
+    from .checkpoint import (
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/src/cerebras-modelzoo/src/cerebras/modelzoo/trainer/callbacks/checkpoint.py", line 34, in <module>
+    from cerebras.appliance.storage import StorageWriter
+ModuleNotFoundError: No module named 'cerebras.appliance.storage'
+```
+And explained me that this is low level error that I cannot handle, so sent an email to ALCF about this version imcompatibility.
