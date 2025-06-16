@@ -113,4 +113,34 @@ Then:
 
 ```
 srun: job 40076 queued and waiting for resources
+(few tens of seconds..)
+srun: job 40076 has been allocated resources
+
+A module that was compiled using NumPy 1.x cannot be run in
+NumPy 2.3.0 as it may crash. To support both 1.x and 2.x
+versions of NumPy, modules must be compiled with NumPy 2.0.
+Some module may need to rebuild instead e.g. with 'pybind11>=2.12'.
+
+If you are a user of the module, the easiest solution will be to
+downgrade to 'numpy<2' or try to upgrade the affected module.
+We expect that some modules will need time to support NumPy 2.
+
+Traceback (most recent call last):  File "/home/seonghapark/graphcore/examples/tutorials/simple_applications/pytorch/mnist/mnist_poptorch.py", line 37, in <module>
+    import torch
+  File "/home/seonghapark/venvs/graphcore/poptorch33_env/lib/python3.12/site-packages/torch/__init__.py", line 1471, in <module>
+    from .functional import *  # noqa: F403
+  File "/home/seonghapark/venvs/graphcore/poptorch33_env/lib/python3.12/site-packages/torch/functional.py", line 9, in <module>
+    import torch.nn.functional as F
+  File "/home/seonghapark/venvs/graphcore/poptorch33_env/lib/python3.12/site-packages/torch/nn/__init__.py", line 1, in <module>
+    from .modules import *  # noqa: F403
+  File "/home/seonghapark/venvs/graphcore/poptorch33_env/lib/python3.12/site-packages/torch/nn/modules/__init__.py", line 35, in <module>
+    from .transformer import TransformerEncoder, TransformerDecoder, \
+  File "/home/seonghapark/venvs/graphcore/poptorch33_env/lib/python3.12/site-packages/torch/nn/modules/transformer.py", line 20, in <module>
+    device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+/home/seonghapark/venvs/graphcore/poptorch33_env/lib/python3.12/site-packages/torch/nn/modules/transformer.py:20: UserWarning: Failed to initialize NumPy: _ARRAY_API not found (Triggered internally at ../torch/csrc/utils/tensor_numpy.cpp:84.)
+  device: torch.device = torch.device(torch._C._get_default_device()),  # torch.device('cpu'),
+Traceback (most recent call last):
+  File "/home/seonghapark/graphcore/examples/tutorials/simple_applications/pytorch/mnist/mnist_poptorch.py", line 40, in <module>
+    import poptorch
+ModuleNotFoundError: No module named 'poptorch'
 ```
