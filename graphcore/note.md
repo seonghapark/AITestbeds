@@ -105,10 +105,12 @@ ERROR: Ignored the following yanked versions: 0.1.6, 0.1.7, 0.1.8, 0.1.9, 0.2.0,
 ERROR: Could not find a version that satisfies the requirement torchvision==0.15.2 (from versions: 0.17.0, 0.17.1, 0.17.2, 0.18.0, 0.18.1, 0.19.0, 0.19.1, 0.20.0, 0.20.1, 0.21.0, 0.22.0, 0.22.1)
 ERROR: No matching distribution found for torchvision==0.15.2
 ```
-So installed the oldest.
-
-
-
-Execute the command:
-
+So installed the oldest torchvision, and execute the command:
+```
 /opt/slurm/bin/srun --ipus=1 python mnist_poptorch.py
+```
+Then:
+
+```
+srun: job 40076 queued and waiting for resources
+```
