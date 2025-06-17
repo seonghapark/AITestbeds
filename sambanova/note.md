@@ -32,6 +32,44 @@ To install a different version of a package that is already installed in one's e
 pip install --ignore-installed  ... # or -I
 ```
 
-### Pre-Built Sample Venv
-Each of the samples or application examples provided by SambaNova has its own pre-built virtual environment which can be readily used. They are present in the /opt/sambaflow/apps/ directory tree within each of the applications.
-Note: Conda is not supported on the SambaNova system.
+
+## Example Programs
+You can use the link to the tutorials on the SambaNova GitHub site or the examples on the compute node (as explained below).
+Find the tutorials on the SambaNova GitHub site. If you use those instructions, ensure that you still use the steps for accessing the SN compute node, setting the required environment and compiling and running the applications as described in this documentation.
+
+Use the examples of well-known simple AI applications under the path: `/opt/sambaflow/apps/starters`, on all SambaNova compute nodes, as discussed on this page.
+```
+cd ~/
+mkdir apps
+cp -r /opt/sambaflow/apps/starters apps/starters
+```
+**Deactivate any active conda environment.** If you have conda installed and a conda environment is active, you will see something like (base) at the beginning of the command prompt. If so, you will need to deactivate it with conda deactivate. **Conda is not used on the SambaNova SN30 cluster.**
+
+### Running LeNet example
+```
+cd ~/apps/starters/lenet
+
+srun python lenet.py compile -b=1 --pef-name="lenet" --output-folder="pef"
+srun python lenet.py run --pef="pef/lenet/lenet.pef"
+```
+
+Alternatively to use Slurm sbatch,
+```
+mkdir -p pef/lenet
+sbatch --output=pef/lenet/output.log submit-lenet-job.sh
+```
+And create submit-lenet-job.sh with the following contents:
+```
+#!/bin/sh
+
+python lenet.py compile -b=1 --pef-name="lenet" --output-folder="pef"
+python lenet.py run --pef="pef/lenet/lenet.pef"
+```
+
+Squeue will give you the queue status.
+```
+squeue
+# One may also...
+watch squeue
+```
+One may see the run log using: `cat pef/lenet/output.log`
