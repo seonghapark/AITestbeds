@@ -1,4 +1,4 @@
-# What did I do?
+# Walking through basics:
 
 The SambaNova DataScale SN30 system is architected around the next-generation Reconfigurable Dataflow Unit (RDU) processor for optimal dataflow processing and acceleration. The AI Testbed's SambaNova SN30 system consists of eight nodes in 4 full racks, each node featuring eight RDUs interconnected to enable model and data parallelism. SambaFlow, Sambanova's software stack, extracts, optimizes, and maps the dataflow graphs to the RDUs from standard machine learning frameworks like PyTorch.
 
@@ -73,3 +73,5 @@ squeue
 watch squeue
 ```
 One may see the run log using: `cat pef/lenet/output.log`
+
+# [SambaNova Model Zoo samples](https://docs.alcf.anl.gov/ai-testbed/sambanova/example-modelzoo-programs/):
