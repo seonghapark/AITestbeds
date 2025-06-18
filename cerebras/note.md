@@ -250,3 +250,50 @@ Traceback (most recent call last):
 ModuleNotFoundError: No module named 'cerebras.appliance.storage'
 ```
 And explained me that this is low level error that I cannot handle, so sent an email to ALCF about this version imcompatibility.
+
+
+# Based on the answer from support@alcf.anl.gov:
+```console
+mkdir ~/R_2.4.0
+cd ~/R_2.4.0
+git clone https://github.com/Cerebras/modelzoo.git
+cd modelzoo
+git tag
+git checkout Release_2.4.0
+```
+Then build the virtual environment
+
+```console
+mkdir ~/R_2.4.0
+cd ~/R_2.4.0
+# Note: "deactivate" does not actually work in scripts.
+conda deactivate
+rm -r venv_cerebras_pt
+/software/cerebras/python3.8/bin/python3.8 -m venv venv_cerebras_pt
+source venv_cerebras_pt/bin/activate
+pip install --upgrade pip
+pip install cerebras_pytorch==2.4.0
+pip install -r modelzoo/requirements.txt
+pip install 'murmurhash==1.0.10' 'thinc==8.2.2' 'cymem<2.0.10'
+```
+
+And tried to run an example:
+```
+cd modelzoo
+pip install -r ~/R_2.4.0/modelzoo/requirements.txt
+cd ~/R_2.4.0/modelzoo/src/cerebras/modelzoo/models/nlp/gpt3
+cp /software/cerebras/dataset/OWT/Pytorch/111m_modified.yaml configs/Cerebras_GPT/111m_modified.yaml
+ 
+export MODEL_DIR=model_dir_gpt3_111m
+if [ -d "$MODEL_DIR" ]; then rm -Rf $MODEL_DIR; fi
+python run.py CSX --job_labels name=gpt3_111m --params configs/Cerebras_GPT/111m_modified.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src --compile_dir $(whoami) |& tee mytest.log
+```
+ 
+**Then has error saying:**
+```
+(venv_cerebras_pt) [seonghapark@cer-login-02 gpt3]$ python run.py CSX --job_labels name=gpt3_111m --params configs/Cerebras_GPT/111m_modified.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src --compile_dir $(whoami) |& tee mytest.log
+Traceback (most recent call last):
+  File "run.py", line 23, in <module>
+    from cerebras.modelzoo.common.run_utils import run
+ModuleNotFoundError: No module named 'cerebras.modelzoo'
+```
