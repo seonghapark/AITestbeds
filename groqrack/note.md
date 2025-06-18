@@ -23,7 +23,7 @@ cd ~/
 git clone https://github.com/groq/groqflow.git
 cd groqflow
 export PYTHON_VERSION=3.10.12
-conda create -n groqflow python=$PYTHON_VERSION -y
+cond
 ```
 Then:
 ```
@@ -107,26 +107,63 @@ And then:
 conda activate groqflow
 ```
 
+## Install groqflow into the groqflow conda environment
+Execute the following commands to install groqflow into the activated groqflow conda environment
+```
+cd ~/groqflow
+pip install -e .
+# Technically this is pip install -e with no argument for -e.
+# It provides a help string listing usages of the command
+# (see http://docopt.org/ for examples of this syntax), and does nothing.
+```
+Then has an error:
+```
+(groqflow) seonghapark@gc-poplar-04:~/groqflow/proof_points/natural_language_processing/minilm$ pip3 install groq-devtools
+ERROR: Could not find a version that satisfies the requirement groq-devtools (from versions: none)
+ERROR: No matching distribution found for groq-devtools
+(groqflow) seonghapark@gc-poplar-04:~/groqflow/proof_points/natural_language_processing/minilm$ cd ../../../
+(groqflow) seonghapark@gc-poplar-04:~/groqflow$ pip install .
+Processing /home/seonghapark/groqflow
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... error
+  error: subprocess-exited-with-error
+  
+  × Getting requirements to build wheel did not run successfully.
+  │ exit code: 1
+  ╰─> [15 lines of output]
+      Traceback (most recent call last):
+        File "/home/seonghapark/anaconda3/envs/groqflow/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 389, in <module>
+          main()
+        File "/home/seonghapark/anaconda3/envs/groqflow/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 373, in main
+          json_out["return_val"] = hook(**hook_input["kwargs"])
+        File "/home/seonghapark/anaconda3/envs/groqflow/lib/python3.10/site-packages/pip/_vendor/pyproject_hooks/_in_process/_in_process.py", line 143, in get_requires_for_build_wheel
+          return hook(config_settings)
+        File "/mnt/localdata/pip-build-env-42kfy4ul/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 331, in get_requires_for_build_wheel
+          return self._get_build_requires(config_settings, requirements=[])
+        File "/mnt/localdata/pip-build-env-42kfy4ul/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 301, in _get_build_requires
+          self.run_setup()
+        File "/mnt/localdata/pip-build-env-42kfy4ul/overlay/lib/python3.10/site-packages/setuptools/build_meta.py", line 317, in run_setup
+          exec(code, locals())
+        File "<string>", line 3, in <module>
+      PermissionError: [Errno 13] Permission denied: 'groqflow/version.py'
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+error: subprocess-exited-with-error
+
+× Getting requirements to build wheel did not run successfully.
+│ exit code: 1
+╰─> See above for output.
+
+note: This error originates from a subprocess, and is likely not a problem with pip.
+```
+
+
+
 ## Running a groqflow sample
 Run a sample using PBS in batch mode (See Job Queueing and Submission for more information about the PBS job scheduler.)
 Create a script `run_minilmv2.sh` with the following contents. It assumes that conda was installed in the default location. The conda initialize section can also be copied from your .bashrc if the conda installer was allowed to add it.
 ```
-#!/bin/bash
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(${HOME}'/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "${HOME}/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "${HOME}/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="${HOME}/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-conda activate groqflow
 cd ~/groqflow/proof_points/natural_language_processing/minilm
 pip install -r requirements.txt
 python minilmv2.py
