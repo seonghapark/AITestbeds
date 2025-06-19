@@ -176,7 +176,7 @@ Finished writing data to pretraining_tutorial/valid_data. Args & outputs can be 
 ```
 
 And failed to run `cszoo fit pretraining_tutorial/model_config.yaml`:
-```
+```console
 (venv_cerebras_pt) (base) [seonghapark@cer-login-01 R_2.4.0]$ cszoo fit pretraining_tutorial/model_config.yaml
 /home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/pydantic/_internal/_generate_schema.py:404: UserWarning: [<class 'int'>, <class 'int'>] is not a Python type (it may be an instance of an object), Pydantic will allow any object with no validation since we cannot even enforce that the input is an instance of the given type. To get rid of this error wrap the type with `pydantic.SkipValidation`.
   warn(
