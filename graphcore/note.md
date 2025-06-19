@@ -10,6 +10,7 @@ ssh gc-poplar-04.ai.alcf.anl.gov
 
 The Poplar SDK is downloaded onto the graphcore systems at the /software/graphcore/poplar_sdk/ location. The default poplar version (3.3.0) is enabled automatically upon logging into a graphcore node. Check if Poplar is setup correctly:
 ```
+conda deactivate
 popc --version
 ```
 One should see:
@@ -41,16 +42,11 @@ created virtual environment CPython3.12.7.final.0-64 in 1650ms
   activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
 ```
 
-**First Error occurred** when continue setting env:
+And setting env:
 ```
 pip install $POPLAR_SDK_ROOT/poptorch-3.3.0+113432_960e9c294b_ubuntu_20_04-cp38-cp38-linux_x86_64.whl
 ```
-Then it outputs:
-```
-ERROR: poptorch-3.3.0+113432_960e9c294b_ubuntu_20_04-cp38-cp38-linux_x86_64.whl is not a supported wheel on this platform.
-```
-
-**But continued**:
+Then:
 ```
 export PYTHONPATH=$POPLAR_SDK_ROOT/python:$PYTHONPATH
 
