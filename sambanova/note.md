@@ -60,6 +60,24 @@ srun python lenet.py compile -b=1 --pef-name="lenet" --output-folder="pef"
 srun python lenet.py run --pef="pef/lenet/lenet.pef"
 ```
 
+Then it messaged:
+```console
+Traceback (most recent call last):
+File "/home/seonghapark/sambanova_apps/starters/lenet/lenet.py", line 14, in <module>
+import sambaflow.samba.utils as utils
+ModuleNotFoundError: No module named 'sambaflow'
+srun: error: sn30-r1-h1: task 0: Exited with exit code 1
+srun: Terminating job step 55851.0
+# And
+Traceback (most recent call last):
+File "/home/seonghapark/sambanova_apps/starters/lenet/lenet.py", line 14, in <module>
+import sambaflow.samba.utils as utils
+ModuleNotFoundError: No module named 'sambaflow'
+srun: error: sn30-r1-h1: task 0: Exited with exit code 1
+srun: Terminating job step 55851.0
+```
+
+
 ### Alternatively to use Slurm sbatch,
 ```
 mkdir -p pef/lenet
