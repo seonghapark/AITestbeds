@@ -48,6 +48,13 @@ cp -r /opt/sambaflow/apps/starters apps/starters
 ### Running LeNet example
 ```
 cd ~/apps/starters/lenet
+pip install --upgrade pip
+pip install fsspec==2024.6.1
+pip install numpy==1.26.4
+pip install pillow==10.4.0
+pip install pandas==2.0.0
+pip install torchvision
+pip install samba
 
 srun python lenet.py compile -b=1 --pef-name="lenet" --output-folder="pef"
 srun python lenet.py run --pef="pef/lenet/lenet.pef"
