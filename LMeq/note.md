@@ -2,7 +2,7 @@
 
 ## Comments from Waggle people:
 ### Jun 19 @ research meeting
-1. This is another library - https://github.com/jax-ml/jax **--> this is a lib that google people developed in 2018, and seems both input and output are equation? But that is not what I am trying to do, so reject this.**
+1. This is another library - https://github.com/jax-ml/jax **--> this is a lib that google people developed in 2018, "accelerator-oriented array computation and program transformation, designed for high-performance numerical computing and large-scale machine learning." and seems both input and output are equation? But that is not what I am trying to do, so reject this.**
 
 2. Honestly, for the model part, I would just try some simple examples in ChatGPT or Claude to see how it does. I guess it would help me to know exactly how the equation part is expressed but I’ve had good luck with a simple zero shot prompting approach like:
 ```
