@@ -39,9 +39,11 @@ source venv_sophia/bin/activate
 apptainer build --fakeroot pytorch:25.05-py3.sing docker://nvcr.io/nvidia/pytorch:25.05-py3
 ```
 I am not sure what the below command is required and doing, but it is also introduced with above; and even run before the above one.
+
 ```
 qsub -I -A <Project> -l select=1:ngpus=8:ncpus=256 -l walltime=01:00:00 -l filesystems=home:eagle -l singularity_fakeroot=True -q by-node -k doe
-``
+```
+
 **qsub is an IEEE Std 1003.1-2008 Unix command for submitting jobs to a job scheduler, usually in cluster or grid computing. For more information about options, use `--man` or `--help`**
 
 
