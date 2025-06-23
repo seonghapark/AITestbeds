@@ -19,6 +19,7 @@ module use /soft/spack/base/0.7.1/install/modulefiles/Core/
 module load apptainer
 apptainer version #1.3.3
 ```
+
 ### Building from Docker or Argonne GitHub Container Registry
 Containers on Sophia can be built by writing Dockerfiles on a local machine and then publishing the container to DockerHub, or by directly building them on an ALCF compute node by writing an Apptainer recipe file. If you prefer to use existing containers, you can pull them from various registries like DockerHub and run them on Sophia.
 Since Docker requires root privileges, which users do not have on Sophia, existing Docker containers must be converted to Apptainer. To build a Docker-based container on Sophia, use the following as an example:
