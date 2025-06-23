@@ -27,7 +27,7 @@ I used to use fsolve as a general numeric solver. There’s also optimization ty
 4. The Sameer Shende at University of Oregon ([and ASCR?](https://www.linkedin.com/in/SameerShende)) is also interested in the same topic. Are you interested in working with his team? **Which actually means** why don't you work with his team.
 
 
-## And so with Sophia:
+# And so with Sophia:
 Well, I will start with some complaints. Waggle people changes IP address from time to time, and never let me know!!! That drives me mad at them!!! (and somewhat curse the system). So I decided to use Sophia, not any machine that Waggle people manage.
 
 In Sophia, I was not about to clone a git repo because there is no proxy (`could not resolve proxy`), so:
@@ -38,4 +38,9 @@ export http_proxy=http://proxy.alcf.anl.gov:3128
 export https_proxy=http://proxy.alcf.anl.gov:3128
 ```
 
-and cloned jax ```https://github.com/jax-ml/jax#```
+## Jax lib:
+Cloned jax ```https://github.com/jax-ml/jax#```
+After quick skim of the git repo and their paper, I thought this lib does not fit to my goal, so stop looking at the details.
+
+## Other method:
+based on the Sean's comments, some LMs can generate equations based on the information provided. When I approach with this method, this is more related to RAG (retrieval-augmented generation: a technique that enables large language models to retrieve and incorporate new information. With RAG, LLMs do not respond to user queries until they refer to a specified set of documents. These documents supplement information from the LLM's pre-existing training data.)
