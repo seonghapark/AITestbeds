@@ -28,6 +28,7 @@ export https_proxy=http://proxy.alcf.anl.gov:3128
 ```
 
 ## Create a virtual ENV:
+**I guess this is when I do not use apptainer.**
 ```
 mkdir -p venv_sophia
 python -m venv venv_sophia --system-site-packages
