@@ -37,7 +37,8 @@ source venv_sophia/bin/activate
 
 ## Building from Docker or Argonne GitHub Container Registry
 ```
-export APPTAINER_CACHEDIR=/tmp
+export APPTAINER_CACHEDIR=/tmp  ## this is suggested,
+export APPTAINER_CACHEDIR=/run/user/37597   ## this is what I used after trying above.
 apptainer build --fakeroot pytorch:25.05-py3.sing docker://nvcr.io/nvidia/pytorch:25.05-py3
 ```
 I am not sure what the below command is required and doing, but it is also introduced with above; and even run before the above one.
