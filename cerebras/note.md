@@ -282,6 +282,7 @@ And tried to run an example:
 ```console
 cd modelzoo
 pip install -r ~/R_2.4.0/modelzoo/requirements.txt
+export PYTHONPATH=/home/$(whoami)/R_2.4.0/modelzoo/src
 cd ~/R_2.4.0/modelzoo/src/cerebras/modelzoo/models/nlp/llama
  
 export MODEL_DIR=model_dir_llama2_7b
