@@ -35,42 +35,10 @@ git clone https://github.com/groq/groqflow.git
 cd groqflow
 ```
 
-Running GroqFlow conda environments
+Running GroqFlow conda environments and run an example
 ```
-conda activate groqflow
-```
-
-Run a sample using PBS in batch mode (See Job Queueing and Submission for more information about the PBS job scheduler.)
-Create a script `run_minilmv2.sh` with the following contents. It assumes that conda was installed in the default location. The conda initialize section can also be copied from your .bashrc if the conda installer was allowed to add it.
-```
-#!/bin/bash
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(${HOME}'/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "${HOME}/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "${HOME}/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="${HOME}/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
 conda activate groqflow
 cd ~/groqflow/proof_points/natural_language_processing/minilm
 pip install -r requirements.txt
 python minilmv2.py
-```
-
-Then run the script as a batch job with PBS. This will reserve a full eight-card(chip) node.
-```
-qsub -l  select=1,place=excl run_minilmv2.sh
-```
-
-**Note:** the number of chips used by a model can be found in the compile cache dir for the model after it is compiled. E.g.
-```
-$ grep num_chips_used ~/.cache/groqflow/minilmv2/minilmv2_state.yaml
-num_chips_used: 1
 ```
