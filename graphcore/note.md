@@ -23,14 +23,10 @@ clang version 16.0.0 (2fce0648f3c328b23a6cbc664fc0dd0630122212)
 source /software/graphcore/poplar_sdk/3.3.0/enable
 ```
 
-### Set SDK env variable
+## Set miscellaneous env variable
 ```
-POPLAR_SDK_ROOT=/software/graphcore/poplar_sdk/3.3.0/
-export POPLAR_SDK_ROOT=$POPLAR_SDK_ROOT
-
 export PYTHONPATH=$POPLAR_SDK_ROOT/python:$PYTHONPATH
 
-## and Miscellaneous Setup
 mkdir ~/tmp
 export TF_POPLAR_FLAGS=--executable_cache_path=~/tmp
 export POPTORCH_CACHE_DIR=~/tmp
@@ -57,7 +53,12 @@ created virtual environment CPython3.12.7.final.0-64 in 1847ms
     added seed packages: pip==25.1.1
   activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
 ```
-There is CLIs to install PopTorch-3.3.0, but it seems that is already installed.
+And:
+```
+POPLAR_SDK_ROOT=/software/graphcore/poplar_sdk/3.3.0/
+export POPLAR_SDK_ROOT=$POPLAR_SDK_ROOT
+```
+
 
 ## To Run Example Models/Programs
 ```
