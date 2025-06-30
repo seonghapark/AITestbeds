@@ -50,6 +50,7 @@ cp -r /opt/sambaflow/apps/starters apps/starters
 ```console
 cd ~/apps/starters/lenet
 # if it is first time training the model
+# For every new model, you need to compile it. The compiled artifact is usually cached if you run it multiple times, otherwise a fresh compilation is needed.
 srun python lenet.py compile -b=1 --pef-name="lenet" --output-folder="pef"
 # if not, then run
 srun python lenet.py run --pef="pef/lenet/lenet.pef"
@@ -57,10 +58,6 @@ srun python lenet.py run --pef="pef/lenet/lenet.pef"
 You may check the status of your job with
 ```
 csctl get jobs
-```
-For every new model, you need to compile it. The compiled artifact is usually cached if you run it multiple times, otherwise a fresh compilation is needed.
-```
-srun python lenet.py compile -b=1 --pef-name="lenet" --output-folder="pef"
 ```
 
 ### [SambaNova Model Zoo samples](https://docs.alcf.anl.gov/ai-testbed/sambanova/example-modelzoo-programs/):
