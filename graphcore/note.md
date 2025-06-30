@@ -57,6 +57,7 @@ And:
 ```
 POPLAR_SDK_ROOT=/software/graphcore/poplar_sdk/3.3.0/
 export POPLAR_SDK_ROOT=$POPLAR_SDK_ROOT
+pip install $POPLAR_SDK_ROOT/poptorch-3.3.0+113432_960e9c294b_ubuntu_20_04-cp38-cp38-linux_x86_64.whl
 ```
 
 
