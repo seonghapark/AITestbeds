@@ -42,3 +42,13 @@ cd ~/groqflow/proof_points/natural_language_processing/minilm
 pip install -r requirements.txt
 python minilmv2.py
 ```
+
+When tried to install requirements:
+```
+Installing collected packages: typing-extensions, triton, tqdm, sympy, safetensors, regex, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufile-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, MarkupSafe, idna, hf-xet, fsspec, filelock, charset_normalizer, certifi, requests, nvidia-cusparse-cu12, nvidia-cufft-cu12, nvidia-cudnn-cu12, jinja2, nvidia-cusolver-cu12, huggingface-hub, torch, tokenizers, transformers
+  Attempting uninstall: typing-extensions
+    Found existing installation: typing_extensions 4.9.0
+    Uninstalling typing_extensions-4.9.0:
+ERROR: Could not install packages due to an OSError: [Errno 13] Permission denied: 'METADATA'
+Consider using the `--user` option or check the permissions.
+```
