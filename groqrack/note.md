@@ -7,7 +7,7 @@ GroqCardTM accelerator is a dual-width, full-height, three-quarter length PCI-Ex
 ## Log in to a Login node and GroqRack node
 ssh into the device:
 ```
-ssh ALCFUserID@gc-login-0[1-2].ai.alcf.anl.gov
+ssh ALCFUserID@groq.ai.alcf.anl.gov
 ssh groq-r01-gn-0[1-9].ai.alcf.anl.gov
 ```
 
