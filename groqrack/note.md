@@ -19,13 +19,6 @@ man tmux
 ```
 
 ## Set Virtual Environments
-If conda is not already installed:
-```
-rm Miniconda3-latest-Linux-x86_64.sh*
-wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-bash Miniconda3-latest-Linux-x86_64.sh
-```
-
 Create a groqflow conda environment and activate it
 ```
 export PYTHON_VERSION=3.10.12
