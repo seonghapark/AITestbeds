@@ -18,7 +18,7 @@ One should see:
 POPLAR version 3.3.0 (de1f8de2a7)
 clang version 16.0.0 (2fce0648f3c328b23a6cbc664fc0dd0630122212)
 ```
-If the Poplar SDK is not enabled, it can be enabled with
+**If the Poplar SDK is not enabled,** it can be enabled with
 ```
 source /software/graphcore/poplar_sdk/3.3.0/enable
 ```
