@@ -5,7 +5,7 @@
 [ALCF suggests](https://docs.alcf.anl.gov/ai-testbed/cerebras/customizing-environment/) to use and/or install cerebras_pytorch==2.4.0, but cerebras-modelzoo requires cerebras_pytorch==2.5.0, so that does not work.
 
 ### So what I really did:
-```console
+```
 mkdir ~/R_2.4.0
 cd ~/R_2.4.0
 /software/cerebras/python3.8/bin/python3.8 -m venv venv_cerebras_pt
@@ -15,7 +15,7 @@ pip install --editable git+https://github.com/Cerebras/modelzoo#egg=cerebras_mod
 ```
 
 The last line uninstalled and installed things:
-```console
+```
   Attempting uninstall: cerebras-appliance
     Found existing installation: cerebras-appliance 2.4.0
     Uninstalling cerebras-appliance-2.4.0:
@@ -37,7 +37,7 @@ Tried to install lower version of **`cerebras_modelzoo`**, but the system said *
 
 ## Running a Pytorch sample
 Refered [documents provided from ALCF](https://docs.alcf.anl.gov/ai-testbed/cerebras/running-a-model-or-program/#running-jobs-on-the-wafer):
-```console
+```
 mkdir ~/R_2.4.0
 cd ~/R_2.4.0
 git clone https://github.com/Cerebras/modelzoo.git
@@ -46,7 +46,7 @@ git tag
 ```
 
 And the git repo's `tag`s are
-```console
+```
 R_1.6.0
 R_1.6.1
 R_1.7.0
@@ -69,14 +69,14 @@ Release_2.5.0
 ALCF suggested to use `git checkout Release_2.4.0`, but I noticed the words `cerebras-pytorch==2.5.0` during ENV setting; which I guess I need to use `Release_2.5.0`.
 
 **So I stayed in the `main`** and when I install libs in requirements.txt, it said requirements are already satisfied.
-```console
+```
 pip install -r ~/R_2.4.0/modelzoo/requirements.txt
 cd ~/R_2.4.0/modelzoo/src/cerebras/modelzoo/models/nlp/gpt3
 cp /software/cerebras/dataset/OWT/Pytorch/111m_modified.yaml configs/Cerebras_GPT/111m_modified.yaml
 ```
 
 ### To run the sample:
-```console
+```
 export MODEL_DIR=model_dir_gpt3_111m
 # the removal of the model_dir is only needed if sample has been previously run
 if [ -d "$MODEL_DIR" ]; then rm -Rf $MODEL_DIR; fi
@@ -84,7 +84,7 @@ python run.py CSX --job_labels name=gpt3_111m --params configs/Cerebras_GPT/111m
 ```
 
 And then errors:
-```console
+```
 (venv_cerebras_pt) (base) [seonghapark@cer-login-01 gpt3]$ python run.py CSX --job_labels name=gpt3_111m --params configs/Cerebras_GPT/111m_modified.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src --compile_dir $(whoami) |& tee mytest.log
 run.py:27: UserWarning: Running models using run.py is deprecated. Please switch to using the ModelZoo CLI. See https://training-docs.cerebras.ai/model-zoo/cli-overview for more details.
   warnings.warn(
@@ -122,7 +122,7 @@ pydantic_core._pydantic_core.ValidationError: 2 validation errors for function-b
 Which seems the configuration file does not match with---
 
 So changed branch to release_2.4.0 and tried to `pip install -r requirements.txt` and:
-```console
+```
 ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
 cerebras-modelzoo 2.5.0 requires cerebras_pytorch==2.5.0, but you have cerebras-pytorch 2.4.0 which is incompatible.
 cerebras-modelzoo 2.5.0 requires tokenizers==0.20.1, but you have tokenizers 0.19.1 which is incompatible.
@@ -132,7 +132,7 @@ cerebras-modelzoo 2.5.0 requires transformers==4.45.2, but you have transformers
 Guessing it is difficult to find solution of them, I started over from the begining with LLaMA example because I saw [this](https://github.com/Cerebras/modelzoo/blob/main/src/cerebras/modelzoo/tutorials/pretraining/model_config.yaml) in Cerebras's git repo.
 
 ### SO:
-```console
+```
 git checkout Release_2.5.0
 pip install -r ~/R_2.4.0/modelzoo/requirements.txt
 cd ~/R_2.4.0/modelzoo/src/cerebras/modelzoo/models/nlp/llama
@@ -141,14 +141,14 @@ cp /software/cerebras/dataset/OWT/Pytorch/params_llama_7b.yaml configs/params_ll
 ```
 
 Then an error:
-```console
+```
   File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/src/cerebras-modelzoo/src/cerebras/modelzoo/trainer/validate.py", line 696, in check
     raise KeyError("Model configuration must have a 'name' key.")
 KeyError: "Model configuration must have a 'name' key."
 ```
 
 So added `name: "llama"` in the configuration file, and then:
-```console
+```
 2025-06-13 17:29:11,781 INFO:   Running command: run.py CSX --job_labels name=llama_7b --params configs/params_llama_7b.yaml --num_csx=1 --mode train --model_dir model_dir_llama_7b --mount_dirs /home/ /software --python_paths /home/seonghapark/R_2.4.0/modelzoo/src --compile_dir seonghapark
 run.py:27: UserWarning: Running models using run.py is deprecated. Please switch to using the ModelZoo CLI. See https://training-docs.cerebras.ai/model-zoo/cli-overview for more details.
   warnings.warn(
@@ -159,7 +159,7 @@ run.py:27: UserWarning: Running models using run.py is deprecated. Please switch
 
 Because the warning message said **Running models using run.py is deprecated. Please switch to using the ModelZoo CLI. See [https://training-docs.cerebras.ai/model-zoo/cli-overview](https://training-docs.cerebras.ai/rel-2.4.0/model-zoo/cli-overview) for more details.** I think this means that the models are in their cloud and users just use API for inference?
 
-```console
+```
 mkdir pretraining_tutorial
 cp modelzoo/src/cerebras/modelzoo/tutorials/pretraining/* pretraining_tutorial
 cszoo data_preprocess run --config pretraining_tutorial/train_data_config.yaml
@@ -167,7 +167,7 @@ cszoo data_preprocess run --config pretraining_tutorial/valid_data_config.yaml
 ```
 
 Then, probably download dataset:
-```console
+```
 INFO:/home/seonghapark/R_2.4.0/venv_cerebras_pt/src/cerebras-modelzoo/src/cerebras/modelzoo/data_preparation/data_preprocessing/preprocess_data.py:
 Finished writing data to pretraining_tutorial/train_data. Args & outputs can be found at pretraining_tutorial/train_data/data_params.json.
 
@@ -176,7 +176,7 @@ Finished writing data to pretraining_tutorial/valid_data. Args & outputs can be 
 ```
 
 And failed to run `cszoo fit pretraining_tutorial/model_config.yaml`:
-```console
+```
 (venv_cerebras_pt) (base) [seonghapark@cer-login-01 R_2.4.0]$ cszoo fit pretraining_tutorial/model_config.yaml
 /home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/pydantic/_internal/_generate_schema.py:404: UserWarning: [<class 'int'>, <class 'int'>] is not a Python type (it may be an instance of an object), Pydantic will allow any object with no validation since we cannot even enforce that the input is an instance of the given type. To get rid of this error wrap the type with `pydantic.SkipValidation`.
   warn(
@@ -232,7 +232,7 @@ pydantic_core._pydantic_core.ValidationError: 8 validation errors for function-b
 
 **Anyway**
 When YH helped me and followed the examples, he also faced the final error message that I saw before that made me to try Release-2.4.0:
-```console
+```
 (venv_cerebras_pt) (base) [seonghapark@cer-login-01 gpt3]$ python run.py CSX --job_labels name=gpt3_111m --params configs/Cerebras_GPT/111m_modified.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src --compile_dir $(whoami) |& tee mytest.log
 Traceback (most recent call last):
   File "run.py", line 25, in <module>
@@ -254,7 +254,7 @@ And explained me that this is low level error that I cannot handle, so sent an e
 
 # Based on the answer from support@alcf.anl.gov:
 And I remember that they said they also had issues running gpt model.
-```console
+```
 mkdir ~/R_2.4.0
 cd ~/R_2.4.0
 git clone https://github.com/Cerebras/modelzoo.git
@@ -264,10 +264,9 @@ git checkout Release_2.4.0
 ```
 Then build the virtual environment
 
-```console
+```
 mkdir ~/R_2.4.0
 cd ~/R_2.4.0
-# Note: "deactivate" does not actually work in scripts.
 conda deactivate
 rm -r venv_cerebras_pt
 /software/cerebras/python3.8/bin/python3.8 -m venv venv_cerebras_pt
@@ -282,19 +281,11 @@ And tried to run an example:
 ```console
 cd modelzoo
 pip install -r ~/R_2.4.0/modelzoo/requirements.txt
+# in my case, below solved problems
 export PYTHONPATH=/home/$(whoami)/R_2.4.0/modelzoo/src
 cd ~/R_2.4.0/modelzoo/src/cerebras/modelzoo/models/nlp/llama
  
 export MODEL_DIR=model_dir_llama2_7b
 if [ -d "$MODEL_DIR" ]; then rm -Rf $MODEL_DIR; fi
 python run.py CSX --job_labels name=llama2_7b --params configs/params_llama2_7b.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /projects /home/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src  --compile_dir $(whoami) |& tee mytest.log
-```
- 
-**Then has error saying:**
-```console
-(venv_cerebras_pt) [seonghapark@cer-login-02 gpt3]$ python run.py CSX --job_labels name=gpt3_111m --params configs/Cerebras_GPT/111m_modified.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src --compile_dir $(whoami) |& tee mytest.log
-Traceback (most recent call last):
-  File "run.py", line 23, in <module>
-    from cerebras.modelzoo.common.run_utils import run
-ModuleNotFoundError: No module named 'cerebras.modelzoo'
 ```
