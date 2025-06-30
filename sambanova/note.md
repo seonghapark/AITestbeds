@@ -52,26 +52,8 @@ cd ~/apps/starters/lenet
 srun python lenet.py compile -b=1 --pef-name="lenet" --output-folder="pef"
 srun python lenet.py run --pef="pef/lenet/lenet.pef"
 ```
-
-### Alternatively to use Slurm sbatch,
+You may check the status of your job with
 ```
-mkdir -p pef/lenet
-sbatch --output=pef/lenet/output.log submit-lenet-job.sh
+csctl get jobs
 ```
-And create submit-lenet-job.sh with the following contents:
-```
-#!/bin/sh
-
-python lenet.py compile -b=1 --pef-name="lenet" --output-folder="pef"
-python lenet.py run --pef="pef/lenet/lenet.pef"
-```
-
-Squeue will give you the queue status.
-```
-squeue
-# One may also...
-watch squeue
-```
-One may see the run log using: `cat pef/lenet/output.log`
-
 ### [SambaNova Model Zoo samples](https://docs.alcf.anl.gov/ai-testbed/sambanova/example-modelzoo-programs/):
