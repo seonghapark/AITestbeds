@@ -38,23 +38,12 @@ export POPLIBS_LOG_LEVEL=WARN
 export PYTHONPATH=/software/graphcore/poplar_sdk/3.3.0/poplar-ubuntu_20_04-3.3.0+7857-b67b751185/python:$PYTHONPATH
 ```
 
-
 ## PopTorch Environment Setup
 ```
 mkdir -p ~/venvs/graphcore
 virtualenv ~/venvs/graphcore/poptorch33_env
 source ~/venvs/graphcore/poptorch33_env/bin/activate
-```
-Then:
-```
-created virtual environment CPython3.12.7.final.0-64 in 1847ms
-  creator CPython3Posix(dest=/home/seonghapark/venvs/graphcore/poptorch33_env, clear=False, no_vcs_ignore=False, global=False)
-  seeder FromAppData(download=False, pip=bundle, wheel=latest, via=copy, app_data_dir=/home/seonghapark/.local/share/virtualenv)
-    added seed packages: pip==25.1.1
-  activators BashActivator,CShellActivator,FishActivator,NushellActivator,PowerShellActivator,PythonActivator
-```
-And:
-```
+
 POPLAR_SDK_ROOT=/software/graphcore/poplar_sdk/3.3.0/
 export POPLAR_SDK_ROOT=$POPLAR_SDK_ROOT
 pip install $POPLAR_SDK_ROOT/poptorch-3.3.0+113432_960e9c294b_ubuntu_20_04-cp38-cp38-linux_x86_64.whl
