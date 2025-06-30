@@ -49,35 +49,9 @@ cp -r /opt/sambaflow/apps/starters apps/starters
 ### Running LeNet example
 ```
 cd ~/apps/starters/lenet
-pip install --upgrade pip
-pip install fsspec==2024.6.1
-pip install numpy==1.26.4
-pip install pillow==10.4.0
-pip install pandas==2.0.0
-pip install torchvision
-pip install samba
-
 srun python lenet.py compile -b=1 --pef-name="lenet" --output-folder="pef"
 srun python lenet.py run --pef="pef/lenet/lenet.pef"
 ```
-
-Then it messaged:
-```console
-Traceback (most recent call last):
-File "/home/seonghapark/sambanova_apps/starters/lenet/lenet.py", line 14, in <module>
-import sambaflow.samba.utils as utils
-ModuleNotFoundError: No module named 'sambaflow'
-srun: error: sn30-r1-h1: task 0: Exited with exit code 1
-srun: Terminating job step 55851.0
-# And
-Traceback (most recent call last):
-File "/home/seonghapark/sambanova_apps/starters/lenet/lenet.py", line 14, in <module>
-import sambaflow.samba.utils as utils
-ModuleNotFoundError: No module named 'sambaflow'
-srun: error: sn30-r1-h1: task 0: Exited with exit code 1
-srun: Terminating job step 55851.0
-```
-
 
 ### Alternatively to use Slurm sbatch,
 ```
