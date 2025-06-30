@@ -27,7 +27,21 @@ source /software/graphcore/poplar_sdk/3.3.0/enable
 ```
 POPLAR_SDK_ROOT=/software/graphcore/poplar_sdk/3.3.0/
 export POPLAR_SDK_ROOT=$POPLAR_SDK_ROOT
+
+export PYTHONPATH=$POPLAR_SDK_ROOT/python:$PYTHONPATH
+
+## and Miscellaneous Setup
+mkdir ~/tmp
+export TF_POPLAR_FLAGS=--executable_cache_path=~/tmp
+export POPTORCH_CACHE_DIR=~/tmp
+
+export POPART_LOG_LEVEL=WARN
+export POPLAR_LOG_LEVEL=WARN
+export POPLIBS_LOG_LEVEL=WARN
+
+export PYTHONPATH=/software/graphcore/poplar_sdk/3.3.0/poplar-ubuntu_20_04-3.3.0+7857-b67b751185/python:$PYTHONPATH
 ```
+
 Create a new virtual environment with this SDK and install popTorch and or other frameworks as needed.
 ```
 virtualenv ~/Graphcore/workspace/poptorch33_env
@@ -45,21 +59,6 @@ created virtual environment CPython3.12.7.final.0-64 in 1650ms
 And setting env:
 ```
 pip install $POPLAR_SDK_ROOT/poptorch-3.3.0+113432_960e9c294b_ubuntu_20_04-cp38-cp38-linux_x86_64.whl
-```
-Then:
-```
-export PYTHONPATH=$POPLAR_SDK_ROOT/python:$PYTHONPATH
-
-## and Miscellaneous Setup
-mkdir ~/tmp
-export TF_POPLAR_FLAGS=--executable_cache_path=~/tmp
-export POPTORCH_CACHE_DIR=~/tmp
-
-export POPART_LOG_LEVEL=WARN
-export POPLAR_LOG_LEVEL=WARN
-export POPLIBS_LOG_LEVEL=WARN
-
-export PYTHONPATH=/software/graphcore/poplar_sdk/3.3.0/poplar-ubuntu_20_04-3.3.0+7857-b67b751185/python:$PYTHONPATH
 ```
 
 ## PopTorch Environment Setup
