@@ -253,6 +253,7 @@ And explained me that this is low level error that I cannot handle, so sent an e
 
 
 # Based on the answer from support@alcf.anl.gov:
+And I remember that they said they also had issues running gpt model.
 ```console
 mkdir ~/R_2.4.0
 cd ~/R_2.4.0
