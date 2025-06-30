@@ -17,6 +17,7 @@ This is unlike the SN10 where the environment had to be set up by each user.
 ## Virtual Environments
 To create a virtual environment, one can use the --system-site-packages flag:
 ```
+conda deactivate
 python -m venv --system-site-packages my_env
 source my_env/bin/activate
 ```
