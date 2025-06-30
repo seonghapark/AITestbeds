@@ -7,8 +7,8 @@ GroqCardTM accelerator is a dual-width, full-height, three-quarter length PCI-Ex
 ## Log in to a Login node and GroqRack node
 ssh into the device:
 ```
-ssh ALCFUserID@gc-login-02.ai.alcf.anl.gov
-ssh gc-poplar-04.ai.alcf.anl.gov
+ssh ALCFUserID@gc-login-0[1-2].ai.alcf.anl.gov
+ssh gc-poplar-0[1-9].ai.alcf.anl.gov
 ```
 
 If you expect a loss of an internet connection for any reason, for long-running jobs we suggest logging into a specific node and using either screen or tmux to create persistent command line sessions.
