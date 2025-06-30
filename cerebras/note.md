@@ -281,12 +281,11 @@ And tried to run an example:
 ```console
 cd modelzoo
 pip install -r ~/R_2.4.0/modelzoo/requirements.txt
-cd ~/R_2.4.0/modelzoo/src/cerebras/modelzoo/models/nlp/gpt3
-cp /software/cerebras/dataset/OWT/Pytorch/111m_modified.yaml configs/Cerebras_GPT/111m_modified.yaml
+cd ~/R_2.4.0/modelzoo/src/cerebras/modelzoo/models/nlp/llama
  
-export MODEL_DIR=model_dir_gpt3_111m
+export MODEL_DIR=model_dir_llama2_7b
 if [ -d "$MODEL_DIR" ]; then rm -Rf $MODEL_DIR; fi
-python run.py CSX --job_labels name=gpt3_111m --params configs/Cerebras_GPT/111m_modified.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src --compile_dir $(whoami) |& tee mytest.log
+python run.py CSX --job_labels name=llama2_7b --params configs/params_llama2_7b.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /projects /home/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src  --compile_dir $(whoami) |& tee mytest.log
 ```
  
 **Then has error saying:**
