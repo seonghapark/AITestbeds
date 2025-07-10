@@ -299,3 +299,72 @@ if [ -d "$MODEL_DIR" ]; then rm -Rf $MODEL_DIR; fi
 
 python run.py CSX --job_labels name=vision_transformer --params configs/params_vit_base_patch_16_imagenet_1k.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/$(whoami)/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src --compile_dir /$(whoami) |& tee mytest.log
 ```
+
+# Update Jul 10
+To run Florence-2 I am trying:
+```
+from transformers import AutoProcessor, AutoModelForCausalLM  
+
+model_id = 'microsoft/Florence-2-large'
+model = AutoModelForCausalLM.from_pretrained(model_id, trust_remote_code=True, torch_dtype='auto')
+```
+But this does not work because
+```
+ImportError: This modeling file requires the following packages that were not found in your environment: flash_attn, timm, einops. Run `pip install flash_attn timm einops`
+```
+But when `pip install flash_attn timm einops`,
+```
+OSError: CUDA_HOME environment variable is not set. Please set it to your CUDA install root.
+      torch.__version__  = 2.4.0+cu121
+```
+Which means, it is impossible to run the lines because the system does not have CUDA GPU.
+
+So just added  `model.py` from [modeling_florence2.py](https://huggingface.co/microsoft/Florence-2-large/blob/main/modeling_florence2.py) and installed libs:
+```
+Installing collected packages: einops, timm
+Successfully installed einops-0.8.1 timm-1.0.16
+```
+
+And tried to run it:
+```
+python run.py CSX --job_labels name=Florence2ForConditionalGeneration --params florence2_large.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src --compile_dir $(whoami) |& tee mytest.log
+```
+
+Then said:
+```
+Expected the name to be one of:
+- bert
+- bert/classifier
+- bert/extractive_summarization
+- bert/token_classifier
+- bloom
+- btlm
+- dit
+- dpo
+- dpr
+- dpr/embedding_generation
+- esm2
+- esm2/classification
+- falcon
+- fc_mnist
+- gemma2
+- generic_image_encoders
+- gpt-neox
+- gpt2
+- gpt3
+- gpt_backbone
+- gptj
+- jais
+- layers_api_demo
+- llama
+- llava
+- mistral
+- mixtral
+- multimodal_simple
+- santacoder
+- starcoder
+- t5
+- transformer
+- vision_transformer
+```
+
