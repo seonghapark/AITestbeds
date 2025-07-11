@@ -134,6 +134,48 @@ Then
 ## Performance while trainig (loss, accuracy)
 
 
+# Vision Transformer
+## Configuration
+## CLIs:
+```
+export PYTHONPATH=/home/$(whoami)/R_2.4.0/modelzoo/src
+
+export MODEL_DIR=model_dir_vt
+if [ -d "$MODEL_DIR" ]; then rm -Rf $MODEL_DIR; fi
+
+python run.py CSX --job_labels name=vision_transformer --params configs/params_vit_base_patch_16_imagenet_1k.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /home/$(whoami)/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src --compile_dir /$(whoami) |& tee mytest.log
+```
+Then
+```
+2025-07-11 16:03:20,229 INFO:   No need to use DLS for loss when half dtype is bfloat16. Disabling gradient scaling.                                            
+2025-07-11 16:03:20,407 INFO:   Checkpoint autoloading is enabled. Looking for latest checkpoint in "model_dir_vt" directory with the following naming convention: `checkpoint_(step)(_timestamp)?.mdl`.
+2025-07-11 16:03:20,409 INFO:   No checkpoints were found in "model_dir_vt".
+2025-07-11 16:03:20,409 INFO:   No checkpoint was provided. Using randomly initialized model parameters.                                                        
+2025-07-11 16:03:20,409 INFO:   Effective batch size is 2850.
+2025-07-11 16:03:20,412 INFO:   The following sequence is used to transform data:                                                                               
+Compose(
+    Resize(size=[256, 256], interpolation=bilinear, max_size=None, antialias=None)                                                                              
+    RandomResizedCrop(size=[224, 224], scale=(0.08, 1.0), ratio=(0.75, 1.33), interpolation=bilinear, antialias=True)                                           
+    RandomHorizontalFlip(p=0.5)
+    ToTensor()
+    Normalize(mean=[0.5, 0.5, 0.5], std=[0.5, 0.5, 0.5])
+    LambdaWithParam(args=(torch.bfloat16,), kwargs={})
+)
+2025-07-11 16:03:39,742 INFO:   Starting training loop 1, from global step 0 to 200                                                                             
+2025-07-11 16:03:40,073 WARNING:   Passing an absolute path as the compile directory may lead to undesirably long paths as the directory is used on the server side, not on the client side. Please consider passing in a relative directory instead.                                                                            
+2025-07-11 16:04:09,694 INFO:   Compiling the model. This may take a few minutes.                                                                               
+2025-07-11 16:04:12,663 INFO:   Initiating a new image build job against the cluster server.                                                                    
+2025-07-11 16:04:12,670 INFO:   Custom worker image build is disabled from server. Falling back to venv mounting.                                               
+2025-07-11 16:04:12,673 WARNING:   Passing an absolute path as the compile directory may lead to undesirably long paths as the directory is used on the server side, not on the client side. Please consider passing in a relative directory instead.                                                                            
+2025-07-11 16:04:13,075 INFO:   Initiating a new compile wsjob against the cluster server.                                                                      
+2025-07-11 16:04:13,086 INFO:   Compile job id: wsjob-ij4dsj8vhnv9utzu6jrdtr, remote log path: /n1/wsjob/workdir/job-operator/wsjob-ij4dsj8vhnv9utzu6jrdtr      
+2025-07-11 16:04:23,093 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status:
+2 compile job(s) queued before current job. For more information, please run 'csctl get jobs'.
+```
+## Resources used while training (CPU, GPU, memory, power, throughput, training time)
+## Performance while trainig (loss, accuracy)
+
+
 # Name (number of parameters)
 ## Configuration for the training (input dataset, epochs, batch size, optimizer, and so on)
 ## CLIs for training them
