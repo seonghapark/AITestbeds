@@ -114,6 +114,22 @@ export MODEL_DIR=model_dir_llama2_7b
 if [ -d "$MODEL_DIR" ]; then rm -Rf $MODEL_DIR; fi
 python run.py CSX --job_labels name=llama2_7b --params configs/params_llama2_7b.yaml --num_csx=1 --mode train --model_dir $MODEL_DIR --mount_dirs /projects /home/ /software --python_paths /home/$(whoami)/R_2.4.0/modelzoo/src  --compile_dir $(whoami) |& tee mytest.log
 ```
+Then
+```
+2025-07-11 15:24:55,954 INFO:   Checkpoint autoloading is enabled. Looking for latest checkpoint in "model_dir_llama2_7b" directory with the following naming convention: `checkpoint_(step)(_timestamp)?.mdl`.
+2025-07-11 15:24:55,955 INFO:   No checkpoints were found in "model_dir_llama2_7b".                                                             
+2025-07-11 15:24:55,955 INFO:   No checkpoint was provided. Using randomly initialized model parameters.                                        
+2025-07-11 15:24:55,975 INFO:   Starting training loop 1, from global step 0 to 200                                                             
+2025-07-11 15:24:57,096 INFO:   Saving checkpoint at step 0
+2025-07-11 15:27:53,583 INFO:   Saved checkpoint model_dir_llama2_7b/checkpoint_0.mdl                                                           
+2025-07-11 15:28:09,423 INFO:   Compiling the model. This may take a few minutes.                                                               
+2025-07-11 15:28:11,856 INFO:   Initiating a new image build job against the cluster server.                                                    
+2025-07-11 15:28:11,863 INFO:   Custom worker image build is disabled from server. Falling back to venv mounting.                               
+2025-07-11 15:28:12,047 INFO:   Initiating a new compile wsjob against the cluster server.                                                      
+2025-07-11 15:28:12,058 INFO:   Compile job id: wsjob-duhl7jck7hjhbtxdpxvk67, remote log path: /n1/wsjob/workdir/job-operator/wsjob-duhl7jck7hjhbtxdpxvk67
+2025-07-11 15:28:22,066 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status: current job is top of queue but likely blocked by running jobs, 1 compile job(s) running using 50Gi memory. For more information, please run 'csctl get jobs'
+```
+
 ## Resources used while training (CPU, GPU, memory, power, throughput, training time)
 ## Performance while trainig (loss, accuracy)
 
