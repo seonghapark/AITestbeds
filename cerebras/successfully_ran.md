@@ -137,7 +137,9 @@ Then
 # Vision Transformer
 - ViT-Base FP16: a patch size of 16x16, a hidden dimension of 768, 12 layers, and 12 attention heads,
 - 86.8M parameters
-Additiona:
+
+
+And additional:
 - ViT-Base/16: Often pre-trained on ImageNet-21k, with 86 million parameters. 
 - ViT-Large/16: Trained on JFT-300M, with 307 million parameters. 
 - ViT-22B: A very large model with 22 billion parameters. 
