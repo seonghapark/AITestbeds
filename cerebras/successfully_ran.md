@@ -129,6 +129,150 @@ Then
 2025-07-11 15:28:12,058 INFO:   Compile job id: wsjob-duhl7jck7hjhbtxdpxvk67, remote log path: /n1/wsjob/workdir/job-operator/wsjob-duhl7jck7hjhbtxdpxvk67
 2025-07-11 15:28:22,066 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status: current job is top of queue but likely blocked by running jobs, 1 compile job(s) running using 50Gi memory. For more information, please run 'csctl get jobs'
 ```
+And then after few hours of waiting until previous job is terminated:
+```
+
+2025-07-11 15:58:22,764 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status: current job is top of queue but likely blocked by running jobs, 1 compile job(s) running using 50Gi memory. For more information, please run 'csctl get jobs'.
+2025-07-11 16:28:23,465 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status: current job is top of queue but likely blocked by running jobs, 1 compile job(s) running using 50Gi memory. For more information, please run 'csctl get jobs'.
+2025-07-11 16:58:24,185 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status: current job is top of queue but likely blocked by running jobs, 1 compile job(s) running using 50Gi memory. For more information, please run 'csctl get jobs'.
+2025-07-11 17:28:24,945 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status: current job is top of queue but likely blocked by running jobs, 1 compile job(s) running using 50Gi memory. For more information, please run 'csctl get jobs'.
+2025-07-11 17:47:35,525 INFO:   Poll ingress status: Waiting for job running, current job status: Initializing, msg: job initializing with config generation/image pulling/....
+2025-07-11 17:47:45,452 INFO:   Poll ingress status: Waiting for job ingress readiness.
+2025-07-11 17:47:55,464 INFO:   Poll ingress success: Job ingress ready, dashboard: https://grafana.cerebras1.lab.alcf.anl.gov/d/WebHNShVz/wsjob-dashboard?orgId=1&var-wsjob=wsjob-duhl7jck7hjhbtxdpxvk67&from=1752255455000&to=now
+2025-07-11 17:47:56,996 INFO:   Found existing cached compile with hash: "cs_16980171559998961274"
+2025-07-11 17:48:04,241 INFO:   Compile artifacts successfully written to remote compile directory. Compile hash is: cs_16980171559998961274
+2025-07-11 17:48:11,313 INFO:   Compile was successful!
+2025-07-11 17:48:11,314 INFO:   Waiting for weight initialization to complete
+2025-07-11 17:48:11,315 INFO:   Programming Cerebras Wafer Scale Cluster for execution. This may take a few minutes.
+2025-07-11 17:48:11,484 INFO:   Initiating a new execute wsjob against the cluster server.
+2025-07-11 17:48:11,510 INFO:   Execute job id: wsjob-7javbqdggsmrb44obfaqft, remote log path: /n1/wsjob/workdir/job-operator/wsjob-7javbqdggsmrb44obfaqft
+2025-07-11 17:48:21,548 INFO:   Poll ingress status: Waiting for job running, current job status: Initializing, msg: job initializing with config generation/image pulling/....
+2025-07-11 17:48:31,551 INFO:   Poll ingress status: Waiting for all Chief pods to be running, current running: 0/1.
+2025-07-11 17:48:41,560 INFO:   Poll ingress status: Waiting for all Weight pods to be running, current running: 0/20.
+2025-07-11 17:48:51,566 INFO:   Poll ingress status: Waiting for all Activation pods to be running, current running: 0/59.
+2025-07-11 17:49:11,589 INFO:   Poll ingress status: Waiting for all Chief pods to be running, current running: 0/1.
+2025-07-11 17:49:21,613 INFO:   Poll ingress status: Waiting for all Activation pods to be running, current running: 0/59.
+2025-07-11 17:49:41,621 INFO:   Poll ingress status: Waiting for all Weight pods to be running, current running: 12/20.
+2025-07-11 17:49:51,631 INFO:   Poll ingress status: Waiting for all Activation pods to be running, current running: 57/59.
+2025-07-11 17:50:01,658 INFO:   Poll ingress success: Job ingress ready, dashboard: https://grafana.cerebras1.lab.alcf.anl.gov/d/WebHNShVz/wsjob-dashboard?orgId=1&var-wsjob=wsjob-7javbqdggsmrb44obfaqft&from=1752255503000&to=now
+2025-07-11 17:50:01,905 INFO:   Preparing to execute using 1 CSX
+2025-07-11 17:50:39,946 INFO:   About to send initial weights
+/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/pydantic/_internal/_generate_schema.py:404: UserWarning: [<class 'int'>, <class 'int'>] is not a Python type (it may be an instance of an object), Pydantic will allow any object with no validation since we cannot even enforce that the input is an instance of the given type. To get rid of this error wrap the type with `pydantic.SkipValidation`.
+  warn(
+../../../../../cerebras/modelzoo/config/base_config.py:114: FutureWarning: Found deprecated fields for LlamaModelConfig: ['fp16_type', 'mixed_precision']
+Support for passing these fields in will be removed in the future.
+  warn(
+2025-07-11 17:51:46,872 INFO:   Finished sending initial weights
+2025-07-11 17:51:46,873 INFO:   Finalizing appliance staging for the run
+2025-07-11 17:51:46,896 INFO:   Waiting for device programming to complete
+2025-07-11 17:53:31,008 INFO:   Device programming is complete
+2025-07-11 17:53:32,561 INFO:   Using network type: ROCE
+2025-07-11 17:53:32,562 INFO:   Waiting for input workers to prime the data pipeline and begin streaming ...
+2025-07-11 17:53:32,583 INFO:   Input workers have begun streaming input data
+2025-07-11 17:53:33,940 INFO:   Appliance staging is complete
+2025-07-11 17:53:33,940 INFO:   Beginning appliance run
+E0711 18:04:02.654472867  609793 hpack_parser.cc:1234]       Error parsing metadata: error=invalid value key=content-type value=text/html
+E0711 18:04:03.657033328  620785 hpack_parser.cc:1234]       Error parsing metadata: error=invalid value key=content-type value=text/html
+E0711 18:04:05.657732039  608834 hpack_parser.cc:1234]       Error parsing metadata: error=invalid value key=content-type value=text/html
+E0711 18:04:09.415502427  609793 hpack_parser.cc:1234]       Error parsing metadata: error=invalid value key=content-type value=text/html
+E0711 18:04:15.954994608  608834 hpack_parser.cc:1234]       Error parsing metadata: error=invalid value key=content-type value=text/html
+2025-07-11 18:04:19,669 ERROR:   Initiating shutdown sequence due to Appliance error: Ran into error while receiving tensor output_model_wise_params_norm for runtime iteration 10
+2025-07-11 18:04:19,670 INFO:   Trying to fetch failure info from the cluster for job wsjob-7javbqdggsmrb44obfaqft. This may take up to 60 seconds.
+2025-07-11 18:04:19,787 INFO:   wsjob-7javbqdggsmrb44obfaqft dashboard: https://grafana.cerebras1.lab.alcf.anl.gov/d/WebHNShVz/wsjob-dashboard?orgId=1&var-wsjob=wsjob-7javbqdggsmrb44obfaqft&from=1752255503000&to=1752257629000
+2025-07-11 18:04:19,787 ERROR:   Job wsjob-7javbqdggsmrb44obfaqft failed due to: job has failed because total 1 replica(s) failed, first failed pods: [wsjob-7javbqdggsmrb44obfaqft-weight-3]
+2025-07-11 18:04:19,787 WARNING:   Event 2025-07-11 18:03:47 +0000 UTC reason=Error object=wsjob-7javbqdggsmrb44obfaqft-weight-3 message='SUSPEND:              0
+        RETIRE:               0
+
+              total        used        free      shared     buffers       cache   available
+Mem:           125G         94G        1.5G        4.0G          0B         29G         25G
+Low:           125G        124G        1.5G
+High:            0B          0B          0B
+Swap:            0B          0B          0B
+Total:         125G         94G        1.5G
+[Pool Allocator Stats]
+Total size of UNBACKED: 35176 MiB
+Total size of BACKED_UNALLOCATED: 14468 MiB
+Total size of BACKED_ALLOCATED: 8303 MiB
+Total size of PEAK BACKED_ALLOCATED: 8319 MiB
+Total BACKED: 22771 MiB
+Total size of PEAK BACKED: 22771 MiB
+Num growths: 0
+Num shuffles: 0
+Number of free page fragments: 284
+Num pool segments: 1
+
+
+terminate called after throwing an instance of 'std::runtime_error'
+  what():  HIOStream::frame failed. bytes=-296, expected=466944
+2025-07-11 18:03:47,814:INFO wsjob-7javbqdggsmrb44obfaqft-weight-3 main subprocess terminated by signal 6 (SIGABRT): Aborted, time: 2025-07-11T18:03:47.814734+00:00'
+2025-07-11 18:04:19,788 WARNING:   Event 2025-07-11 18:03:48 +0000 UTC reason=Error object=wsjob-7javbqdggsmrb44obfaqft message='Error pod wsjob-7javbqdggsmrb44obfaqft-weight-15 container ws exitCode: 250 terminated reason/message: Error'
+2025-07-11 18:04:19,788 WARNING:   Event 2025-07-11 18:03:48 +0000 UTC reason=Error object=wsjob-7javbqdggsmrb44obfaqft message='Error pod wsjob-7javbqdggsmrb44obfaqft-weight-3 container ws exitCode: 250 terminated reason/message: Error'
+2025-07-11 18:04:19,788 WARNING:   Event 2025-07-11 18:03:49 +0000 UTC reason=Error object=wsjob-7javbqdggsmrb44obfaqft-weight-3 message='Pod: job-operator.wsjob-7javbqdggsmrb44obfaqft-weight-3 exited with code 250'
+E0711 18:04:20.256250640  609792 hpack_parser.cc:1234]       Error parsing metadata: error=invalid value key=content-type value=text/html
+2025-07-11 18:04:23,132 INFO:   Processed 11264 training sample(s) in 9567.159426912 seconds.
+Traceback (most recent call last):
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/cerebras/appliance/appliance_client.py", line 1108, in _recv_output_stream
+    for response in output_stream:
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/cerebras/appliance/utils/interceptors.py", line 34, in intercept_unary_stream
+    raise PicklableRpcError.from_grpc_error(e) from None
+cerebras.appliance.errors.PicklableRpcError: gRPC Error:
+  Status Code: StatusCode.INTERNAL
+  Details:
+COUT030 18:04:18 GMT
+
+Deadline Exceeded
+
+
+  Metadata:
+    date: Fri, 11 Jul 2025 18:04:19 GMT
+    content-length: 0
+    strict-transport-security: max-age=15724800; includeSubDomains
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "run.py", line 27, in <module>
+    run()
+  File "../../../../../cerebras/modelzoo/common/run_utils.py", line 65, in run
+    main(
+  File "../../../../../cerebras/modelzoo/common/run_utils.py", line 119, in main
+    return run_trainer(mode, params)
+  File "../../../../../cerebras/modelzoo/trainer/utils.py", line 149, in run_trainer
+    run_trainer(mode, config)
+  File "../../../../../cerebras/modelzoo/trainer/utils.py", line 138, in run_trainer
+    trainer.fit(train_dataloader, val_dataloader, config.fit.ckpt_path)
+  File "../../../../../cerebras/modelzoo/trainer/trainer.py", line 721, in fit
+    self._run_train(train_dataloader, loop, loop_idx)
+  File "../../../../../cerebras/modelzoo/trainer/trainer.py", line 762, in _run_train
+    for batch_idx, batch in enumerate(self.executor):
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/cerebras/pytorch/utils/data/data_executor.py", line 303, in __iter__
+    self.backend.on_batch_end()
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/cerebras/pytorch/backend/ltc_backend.py", line 957, in on_batch_end
+    self.run_step_closures()
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/cerebras/pytorch/backend/ltc_backend.py", line 1222, in run_step_closures
+    cpu_args, cpu_kwargs = torch.utils._pytree.tree_map(
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/torch/utils/_pytree.py", line 948, in tree_map
+    return treespec.unflatten(map(func, *flat_args))
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/torch/utils/_pytree.py", line 787, in unflatten
+    leaves = list(leaves)
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/cerebras/pytorch/backend/ltc_backend.py", line 1224, in <lambda>
+    self._get_cpu_tensor(arg)
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/cerebras/pytorch/backend/ltc_backend.py", line 1139, in _get_cpu_tensor
+    return cerebras_pytorch_lib.get_appliance_data(arg).tensor
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/cerebras/pytorch/backend/ltc_backend.py", line 671, in get_tensor
+    tensor = self.appliance.receive_output(iteration, name)
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/cerebras/pytorch/core/appliance.py", line 164, in receive_output
+    out = super().receive_output(iteration, name)
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/cerebras/appliance/appliance_manager.py", line 754, in receive_output
+    return self.grpc_client.recv_output(iteration, name)
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/cerebras/appliance/appliance_client.py", line 649, in recv_output
+    return _recv_output_stream(
+  File "/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/cerebras/appliance/appliance_client.py", line 1130, in _recv_output_stream
+    raise ApplianceUnknownError(
+cerebras.appliance.errors.ApplianceUnknownError: Ran into error while receiving tensor output_model_wise_params_norm for runtime iteration 10
+
+```
 
 ## Resources used while training (CPU, GPU, memory, power, throughput, training time)
 ## Performance while trainig (loss, accuracy)
@@ -343,6 +487,86 @@ Compose(
 2025-07-11 16:04:13,086 INFO:   Compile job id: wsjob-ij4dsj8vhnv9utzu6jrdtr, remote log path: /n1/wsjob/workdir/job-operator/wsjob-ij4dsj8vhnv9utzu6jrdtr      
 2025-07-11 16:04:23,093 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status:
 2 compile job(s) queued before current job. For more information, please run 'csctl get jobs'.
+```
+After few hours of waiting until previous job is terminated:
+```
+
+2025-07-11 16:21:03,446 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status: 1 compile job(s) queued before current job. For more information, please run 'csctl get jobs'.
+2025-07-11 16:51:04,100 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status: 1 compile job(s) queued before current job. For more information, please run 'csctl get jobs'.
+2025-07-11 17:21:04,756 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status: 1 compile job(s) queued before current job. For more information, please run 'csctl get jobs'.
+2025-07-11 17:47:35,437 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status: current job is top of queue but likely blocked by running jobs, 1 compile job(s) running using 50Gi memory. For more information, please run 'csctl get jobs'.
+2025-07-11 17:48:15,655 INFO:   Poll ingress status: Waiting for job running, current job status: Scheduled, msg: job scheduled and waiting to be initialized.
+2025-07-11 17:48:25,486 INFO:   Poll ingress status: Waiting for all Coordinator pods to be running, current running: 0/1.
+2025-07-11 17:48:35,492 INFO:   Poll ingress status: Waiting for job ingress readiness.
+2025-07-11 17:48:55,509 INFO:   Poll ingress success: Job ingress ready, dashboard: https://grafana.cerebras1.lab.alcf.anl.gov/d/WebHNShVz/wsjob-dashboard?orgId=1&var-wsjob=wsjob-ij4dsj8vhnv9utzu6jrdtr&from=1752255504000&to=now
+2025-07-11 17:48:56,173 INFO:   Found existing cached compile with hash: "cs_9892963798577744835"
+2025-07-11 17:49:01,120 INFO:   Compile artifacts successfully written to remote compile directory. Compile hash is: cs_9892963798577744835
+2025-07-11 17:49:09,845 INFO:   Compile was successful!
+2025-07-11 17:49:09,846 INFO:   Waiting for weight initialization to complete
+2025-07-11 17:49:09,846 INFO:   Programming Cerebras Wafer Scale Cluster for execution. This may take a few minutes.
+2025-07-11 17:49:10,226 INFO:   Initiating a new execute wsjob against the cluster server.
+2025-07-11 17:49:10,252 INFO:   Execute job id: wsjob-nephnzm89xrzwsjjqqsftd, remote log path: /n1/wsjob/workdir/job-operator/wsjob-nephnzm89xrzwsjjqqsftd
+2025-07-11 17:49:20,264 INFO:   Poll ingress status: Waiting for job running, current job status: Queueing, msg: job queueing to be scheduled. Job queue status: current job is top of queue but likely blocked by running jobs, 1 execute job(s) running using 1 system(s) and 1 nodegroup(s)[1 pop and 0 depop]. For more information, please run
+'csctl get jobs'.
+2025-07-11 18:04:31,295 INFO:   Poll ingress status: Waiting for job running, current job status: Scheduled, msg: job scheduled and waiting to be initialized.
+2025-07-11 18:04:41,113 INFO:   Poll ingress status: Waiting for all Chief pods to be running, current running: 0/1.
+2025-07-11 18:05:01,143 INFO:   Poll ingress status: Waiting for all Weight pods to be running, current running: 0/24.
+2025-07-11 18:05:11,141 INFO:   Poll ingress status: Waiting for all Activation pods to be running, current running: 0/48.
+2025-07-11 18:05:41,177 INFO:   Poll ingress status: Waiting for all Weight pods to be running, current running: 2/24.
+2025-07-11 18:05:51,183 INFO:   Poll ingress status: Waiting for all Weight pods to be running, current running: 20/24.
+2025-07-11 18:06:01,205 INFO:   Poll ingress success: Job ingress ready, dashboard: https://grafana.cerebras1.lab.alcf.anl.gov/d/WebHNShVz/wsjob-dashboard?orgId=1&var-wsjob=wsjob-nephnzm89xrzwsjjqqsftd&from=1752256476000&to=now
+2025-07-11 18:06:01,392 INFO:   Preparing to execute using 1 CSX
+2025-07-11 18:06:40,335 INFO:   About to send initial weights
+/home/seonghapark/R_2.4.0/venv_cerebras_pt/lib/python3.8/site-packages/pydantic/_internal/_generate_schema.py:404: UserWarning: [<class 'int'>, <class 'int'>] is not a Python type (it may be an instance of an object), Pydantic will allow any object with no validation since we cannot even enforce that the input is an instance of the given
+type. To get rid of this error wrap the type with `pydantic.SkipValidation`.
+  warn(
+../../../../../cerebras/modelzoo/config/base_config.py:114: FutureWarning: Found deprecated fields for VisionTransformerModelConfig: ['fp16_type', 'mixed_precision']
+Support for passing these fields in will be removed in the future.
+  warn(
+../../../../../cerebras/modelzoo/trainer/validate.py:117: UserWarning: Adam got 1 unexpected and unused parameters: ['correct_bias'].
+Please ensure that you specified the correct parameters:
+Adam(params=[], lr=0.001, betas=(0.9, 0.999), eps=1e-08, weight_decay=0.0003, amsgrad=False)
+Passing in unused parameters is deprecated behaviour and support for it will be removed in a future release.
+  warn(
+../../../../../cerebras/modelzoo/config/base_config.py:114: FutureWarning: Found deprecated fields for ImageNet1KProcessorConfig: ['num_classes']
+Support for passing these fields in will be removed in the future.
+  warn(
+2025-07-11 18:06:49,651 INFO:   Finished sending initial weights
+2025-07-11 18:06:49,652 INFO:   Finalizing appliance staging for the run
+2025-07-11 18:07:09,595 INFO:   Waiting for device programming to complete
+2025-07-11 18:09:16,255 INFO:   Device programming is complete
+2025-07-11 18:09:17,134 INFO:   Using network type: ROCE
+2025-07-11 18:09:17,135 INFO:   Waiting for input workers to prime the data pipeline and begin streaming ...
+2025-07-11 18:10:18,040 INFO:   Input workers have begun streaming input data
+2025-07-11 18:10:19,468 INFO:   Appliance staging is complete
+2025-07-11 18:10:19,468 INFO:   Beginning appliance run
+2025-07-11 18:10:57,392 INFO:   | Train Device=CSX, Step=10, Loss=7.01949, Rate=753.24 samples/sec, GlobalRate=753.24 samples/sec
+2025-07-11 18:11:37,060 INFO:   | Train Device=CSX, Step=20, Loss=7.03425, Rate=732.38 samples/sec, GlobalRate=735.44 samples/sec
+2025-07-11 18:12:30,250 INFO:   | Train Device=CSX, Step=30, Loss=6.99695, Rate=614.44 samples/sec, GlobalRate=654.20 samples/sec
+2025-07-11 18:13:09,187 INFO:   | Train Device=CSX, Step=40, Loss=6.99425, Rate=684.94 samples/sec, GlobalRate=672.04 samples/sec
+2025-07-11 18:13:58,801 INFO:   | Train Device=CSX, Step=50, Loss=6.97235, Rate=618.64 samples/sec, GlobalRate=649.96 samples/sec
+2025-07-11 18:14:40,385 INFO:   | Train Device=CSX, Step=60, Loss=6.94855, Rate=658.67 samples/sec, GlobalRate=655.60 samples/sec
+2025-07-11 18:15:28,712 INFO:   | Train Device=CSX, Step=70, Loss=6.93150, Rate=617.31 samples/sec, GlobalRate=645.31 samples/sec
+2025-07-11 18:16:09,574 INFO:   | Train Device=CSX, Step=80, Loss=6.90237, Rate=665.40 samples/sec, GlobalRate=651.40 samples/sec
+2025-07-11 18:16:55,981 INFO:   | Train Device=CSX, Step=90, Loss=6.87574, Rate=634.64 samples/sec, GlobalRate=647.03 samples/sec
+2025-07-11 18:17:33,907 INFO:   | Train Device=CSX, Step=100, Loss=6.88158, Rate=704.73 samples/sec, GlobalRate=656.15 samples/sec
+2025-07-11 18:17:33,910 INFO:   Saving checkpoint at step 100
+2025-07-11 18:17:54,424 INFO:   Saved checkpoint model_dir_vt/checkpoint_100.mdl
+2025-07-11 18:18:20,062 INFO:   | Train Device=CSX, Step=110, Loss=6.83740, Rate=652.38 samples/sec, GlobalRate=652.44 samples/sec
+2025-07-11 18:18:58,726 INFO:   | Train Device=CSX, Step=120, Loss=6.83568, Rate=703.23 samples/sec, GlobalRate=658.74 samples/sec
+2025-07-11 18:19:44,313 INFO:   | Train Device=CSX, Step=130, Loss=6.82083, Rate=656.40 samples/sec, GlobalRate=656.03 samples/sec
+2025-07-11 18:20:22,072 INFO:   | Train Device=CSX, Step=140, Loss=6.79728, Rate=715.43 samples/sec, GlobalRate=662.22 samples/sec
+2025-07-11 18:21:09,154 INFO:   | Train Device=CSX, Step=150, Loss=6.81465, Rate=649.36 samples/sec, GlobalRate=658.10 samples/sec
+2025-07-11 18:21:48,269 INFO:   | Train Device=CSX, Step=160, Loss=6.79875, Rate=696.92 samples/sec, GlobalRate=662.10 samples/sec
+2025-07-11 18:22:37,343 INFO:   | Train Device=CSX, Step=170, Loss=6.78806, Rate=627.22 samples/sec, GlobalRate=656.69 samples/sec
+2025-07-11 18:23:16,739 INFO:   | Train Device=CSX, Step=180, Loss=6.76104, Rate=684.94 samples/sec, GlobalRate=660.08 samples/sec
+2025-07-11 18:24:08,021 INFO:   | Train Device=CSX, Step=190, Loss=6.75545, Rate=607.43 samples/sec, GlobalRate=653.62 samples/sec
+2025-07-11 18:24:46,556 INFO:   | Train Device=CSX, Step=200, Loss=6.72398, Rate=686.73 samples/sec, GlobalRate=657.44 samples/sec
+2025-07-11 18:24:46,559 INFO:   Saving checkpoint at step 200
+2025-07-11 18:25:06,987 INFO:   Saved checkpoint model_dir_vt/checkpoint_200.mdl
+2025-07-11 18:25:27,397 INFO:   Training completed successfully!
+2025-07-11 18:25:27,522 INFO:   Processed 570000 training sample(s) in 8507.781435492 seconds.
+8542.796370267868
 ```
 ## Resources used while training (CPU, GPU, memory, power, throughput, training time)
 ## Performance while trainig (loss, accuracy)
