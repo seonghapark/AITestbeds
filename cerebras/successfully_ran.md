@@ -1,5 +1,5 @@
 # The models successfully trained
-# LLaMA2:
+# LLaMA2 7B FP16:
 - 7B parameters,
 - 13.5G when FP16,
 - 28G when FP32
@@ -134,17 +134,22 @@ Then
 ## Performance while trainig (loss, accuracy)
 
 
-# Vision Transformer
+# Vision Transformer Base FP16
 - ViT-Base FP16: a patch size of 16x16, a hidden dimension of 768, 12 layers, and 12 attention heads,
 - 86.8M parameters
-
 
 And additional:
 - ViT-Base/16: Often pre-trained on ImageNet-21k, with 86 million parameters. 
 - ViT-Large/16: Trained on JFT-300M, with 307 million parameters. 
 - ViT-22B: A very large model with 22 billion parameters. 
 - DeiT (Data-efficient Image Transformers): These models are distilled versions of ViT, with variants like DeiT-tiny, DeiT-small, and DeiT-base. 
-- BEiT (BERT pre-training of Image Transformers): These models use a self-supervised method inspired by BERT. 
+- BEiT (BERT pre-training of Image Transformers): These models use a self-supervised method inspired by BERT.
+
+And..
+- ViT-Base: 12 layers, 768 hidden size, 3072 MLP size.
+- ViT-Large: 24 layers, 1024 hidden size, 4096 MLP size.
+- ViT-Huge: 32 layers, 1280 hidden size, 5120 MLP size.
+- ViT-22B: 22 billion parameters, according to Google Research.
 
 ## Configuration
 ```
